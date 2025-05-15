@@ -7,7 +7,7 @@
 #you will have a good base from this if you want to configure more
 #THIS SCRIPT IS CREATED BY BayonetArch 
 #i am a just a beginner for bash scripting if you have improvements please enlighten me <3
-set -e
+set -eo pipefail
 is_installed(){
     check_pkg="$1"
     if command -v "$check_pkg" &>/dev/null  ;then
