@@ -23,7 +23,7 @@
 
 ## Requirements ##
 
-- termux app:(https://github.com/termux/termux-app/releases/)  
+- termux app:https://github.com/termux/termux-app/releases/  
 - termx:api : (https://github.com/termux/termux-api/releases)
 - internet connection for downloading plugins and packages
 > [!WARNING]
