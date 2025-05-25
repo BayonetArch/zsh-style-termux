@@ -49,6 +49,7 @@ chsh -s zsh
 > After changing shell, restart Termux and verify with `echo $SHELL` or `echo $0`
 
 **3. Clone and install**
+if your default shell is `zsh` you can clone and run the install script 
 ```bash
 git clone https://github.com/BayonetArch/zsh-style-termux.git
 cd zsh-style-termux
@@ -60,39 +61,37 @@ The install script will automatically set up all required packages and configura
 
 ## Configuration
 
-### Theme customization
-- p10k configuration
-- Color scheme settings
-- Font settings
 
-### Plugin management
-- Adding new plugins
-- Managing zinit
-- Plugin updates
+# Promt  configurations
+**you can configure your zsh prompt as your liking!**
+**just run `p10k configure` after Installation is finished**
 
-### Custom settings
-- Aliases and functions
-- Environment variables
-- Shell options
+# adding new plugins
+**adding new plugins is just simple zinit line**
+you can add your own plugins in the `$HOME/.zshrc` file
+just to the comment where it says plugins and add line like this
+```bash
+zinit light zsh-users/zsh-syntax-highlighting #example of adding zsh syntax highlighting
+```
+
+
+```bash
+zinit light {plugin name} 
+```
+# keybinds
+**look for keybinds in the `.zshrc` if you want to customize it**
+here are basic keybinds
+
+| Shortcut       | Action                                |
+|----------------|----------------------------------------|
+| `Ctrl + R`     | Search command history with **fzf**    |
+| `Ctrl + F`     | Accept autosuggestion                  |
+| `Ctrl + P`     | Search backward in history             |
+| `Ctrl + N`     | Search forward in history              |
+| `Ctrl + Shift + P` | Alternate key for **fzf** history search |
 
 ## Troubleshooting
 
-### Installation issues
-- Permission errors
-- Package installation problems
-- Script execution failures
+**If you run into any issues or have questions, feel free to ask in the comments on my [YouTube channel](https://www.youtube.com/@Bayonet7) or open an issue in this repo. I’ll try to respond as soon as I can.**
 
-### Theme and display
-- Font rendering problems
-- p10k theme not showing
-- Color display issues
 
-### Plugin problems
-- Plugins not loading
-- Update failures
-- Performance issues
-
-### Shell configuration
-- Default shell not changing
-- Configuration not loading
-- Path issues
