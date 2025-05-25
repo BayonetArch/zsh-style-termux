@@ -69,6 +69,7 @@ The install script will automatically set up all required packages and configura
 # adding new plugins
 **adding new plugins is just simple zinit line**
 you can add your own plugins in the `$HOME/.zshrc` file
+<br></br>
 just to the comment where it says plugins and add line like this
 ```bash
 zinit light zsh-users/zsh-syntax-highlighting #example of adding zsh syntax highlighting
@@ -80,7 +81,8 @@ zinit light {plugin name}
 ```
 # keybinds
 **look for keybinds in the `.zshrc` if you want to customize it**
-here are basic keybinds
+<br></br>
+Here are basic keybinds:
 
 | Shortcut       | Action                                |
 |----------------|----------------------------------------|
