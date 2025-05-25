@@ -27,7 +27,6 @@ space() {
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
-MAGENTA='\033[0;35m'
 CYAN='\033[0;36m'
 
 #reset color
@@ -56,7 +55,7 @@ sleep 1
 #install pkgs
 install_pkgs() {
     pkgs="$1"
-    echo -ne "${MAGENTA}==>${RC}installing ${RC}${CYAN}$pkgs${RC}"
+    echo -ne "installing $pkgs"
     if apt install "$pkgs" -y &>/dev/null; then
         echo -ne " installed ${TICK}"
     else
@@ -69,9 +68,10 @@ install_pkgs() {
 #install pkgs with verbose
 install_pkgs_verbose() {
     pkgs="$1"
-    echo -ne "${MAGENTA}==>${RC}installing...${RC}${CYAN}$pkgs${RC}"
+    echo -ne "installing $pkgs"
     if apt install "$pkgs" -y; then
         echo -ne " installed ${TICK}"
+        space
     else
         apt install "$pkgs" -y 2>errors.log
         echo -ne "failed ${CROSS}"
@@ -88,7 +88,30 @@ fzf_prompt_yn() {
     option2="$2"
     header1="$4"
     header2="$3"
-    choice=$(echo -e "$header1\n$option1\n$option2\nexit" | fzf --ansi --header-lines=1 --header "$header2" --prompt "select an option: " $fzf_color --layout=reverse --border=bold --border=rounded --margin=5%)
+
+    choice=$(
+        echo -e "$header1\n$option1\n$option2\nexit" | fzf \
+            --ansi \
+            --header-lines=1 \
+            --header "$header2" \
+            --prompt "❯ " \
+            --layout=reverse \
+            --border=rounded \
+            --height=40% \
+            --margin=1 \
+            --padding=1 \
+            --color=bg:#000000,bg+:#1e1e2e \
+            --color=fg:#cdd6f4,fg+:#f5e0dc \
+            --color=hl:#f38ba8,hl+:#f5c2e7 \
+            --color=info:#89b4fa,prompt:#cba6f7 \
+            --color=pointer:#f5e0dc,marker:#a6e3a1 \
+            --color=spinner:#f9e2af,header:#89dceb \
+            --color=border:#6c7086,separator:#45475a \
+            --pointer='▶' \
+            --no-preview \
+            --bind='ctrl-j:down,ctrl-k:up'
+    )
+
     if [[ $? -ne 0 ]]; then
         exit 1
     fi
@@ -178,18 +201,19 @@ pkgs=(termux-api tur-repo git zsh
 )
 
 clear
-echo -e "${RED}installing required packages ! ${RC}"
 space
 if ! want_verbose; then
+    echo -e "${RED}installing required packages ! ${RC}"
     for pk in "${pkgs[@]}"; do
         install_pkgs "$pk"
     done
 else
+    echo -e "${RED}installing required packages ! ${RC}"
     for p in "${pkgs[@]}"; do
         install_pkgs_verbose "$p"
     done
 fi
-
+sleep 5
 clear
 
 #check for .zshrc backups and copy the .zshrc and color script

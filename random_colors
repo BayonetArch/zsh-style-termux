@@ -1,3 +1,12 @@
 #!/usr/bin/env bash
-random=$(ls  "$HOME"/.scripts/colorscripts | shuf -n 1 )
-exec "$HOME"/.scripts/colorscripts/"$random"
+
+if [[ -d "$HOME"/.scripts/colorscripts/ ]]; then
+    random=$(ls "$HOME"/.scripts/colorscripts | shuf -n 1)
+    exec "$HOME"/.scripts/colorscripts/"$random"
+
+else
+    mkdir -p "$HOME"/.scripts
+    cp -r ./colorscripts "$HOME"/.scripts/
+    random=$(ls "$HOME"/.scripts/colorscripts | shuf -n 1)
+    exec "$HOME"/.scripts/colorscripts/"$random"
+fi
